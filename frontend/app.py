@@ -19,291 +19,69 @@ st.set_page_config(
 API_URL = "http://127.0.0.1:8000"
 
 # ============================================================
-# GOD-TIER CSS
+# CSS
 # ============================================================
 st.markdown("""
 <style>
-    /* === GLOBAL === */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
     .main { background: #06080d; font-family: 'Inter', sans-serif; }
     .block-container { padding: 1rem 2rem; }
-
-    /* Hide Streamlit defaults */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
-
-    /* === GLASS CARDS === */
-    .glass-card {
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(99, 102, 241, 0.15);
-        border-radius: 16px;
-        padding: 24px;
-        margin: 8px 0;
-        transition: all 0.3s ease;
-    }
-    .glass-card:hover {
-        border-color: rgba(99, 102, 241, 0.4);
-        box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
-        transform: translateY(-2px);
-    }
-
-    /* === HERO HEADER === */
-    .hero-header {
-        background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 20px;
-        padding: 32px 40px;
-        margin-bottom: 24px;
-        position: relative;
-        overflow: hidden;
-    }
-    .hero-header::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
-        pointer-events: none;
-    }
-    .hero-title {
-        font-size: 42px; font-weight: 800;
-        background: linear-gradient(135deg, #e0e7ff, #a5b4fc, #818cf8);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        margin: 0; line-height: 1.2;
-    }
-    .hero-subtitle {
-        color: #94a3b8; font-size: 16px; margin: 8px 0 0 0;
-        font-weight: 400; letter-spacing: 0.5px;
-    }
-    .hero-badge {
-        display: inline-block; padding: 4px 12px;
-        background: rgba(99, 102, 241, 0.15);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        border-radius: 20px; font-size: 12px;
-        color: #a5b4fc; margin-right: 8px; margin-top: 12px;
-    }
-
-    /* === METRIC CARDS === */
-    .metric-card {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.4));
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(99, 102, 241, 0.12);
-        border-radius: 16px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.3s ease;
-    }
-    .metric-card:hover {
-        border-color: rgba(99, 102, 241, 0.3);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
-    }
-    .metric-value {
-        font-size: 32px; font-weight: 800;
-        background: linear-gradient(135deg, #e0e7ff, #a5b4fc);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        margin: 4px 0;
-    }
-    .metric-label {
-        color: #64748b; font-size: 12px; font-weight: 600;
-        text-transform: uppercase; letter-spacing: 1.5px;
-    }
-
-    /* === COLORED METRIC VARIANTS === */
-    .metric-red .metric-value {
-        background: linear-gradient(135deg, #fca5a5, #ef4444);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    #MainMenu {visibility: hidden;} footer {visibility: hidden;} header {visibility: hidden;}
+    .glass-card { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(99, 102, 241, 0.15); border-radius: 16px; padding: 24px; margin: 8px 0; transition: all 0.3s ease; }
+    .glass-card:hover { border-color: rgba(99, 102, 241, 0.4); box-shadow: 0 0 30px rgba(99, 102, 241, 0.1); transform: translateY(-2px); }
+    .hero-header { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 20px; padding: 32px 40px; margin-bottom: 24px; position: relative; overflow: hidden; }
+    .hero-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 50%); pointer-events: none; }
+    .hero-title { font-size: 42px; font-weight: 800; background: linear-gradient(135deg, #e0e7ff, #a5b4fc, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; line-height: 1.2; }
+    .hero-subtitle { color: #94a3b8; font-size: 16px; margin: 8px 0 0 0; font-weight: 400; letter-spacing: 0.5px; }
+    .hero-badge { display: inline-block; padding: 4px 12px; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 20px; font-size: 12px; color: #a5b4fc; margin-right: 8px; margin-top: 12px; }
+    .metric-card { background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.4)); backdrop-filter: blur(20px); border: 1px solid rgba(99, 102, 241, 0.12); border-radius: 16px; padding: 20px; text-align: center; transition: all 0.3s ease; }
+    .metric-card:hover { border-color: rgba(99, 102, 241, 0.3); transform: translateY(-3px); box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15); }
+    .metric-value { font-size: 32px; font-weight: 800; background: linear-gradient(135deg, #e0e7ff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 4px 0; }
+    .metric-label { color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; }
+    .metric-red .metric-value { background: linear-gradient(135deg, #fca5a5, #ef4444); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .metric-red { border-color: rgba(239, 68, 68, 0.2); }
     .metric-red:hover { border-color: rgba(239, 68, 68, 0.4); box-shadow: 0 8px 32px rgba(239, 68, 68, 0.15); }
-
-    .metric-green .metric-value {
-        background: linear-gradient(135deg, #86efac, #22c55e);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .metric-green .metric-value { background: linear-gradient(135deg, #86efac, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .metric-green { border-color: rgba(34, 197, 94, 0.2); }
-
-    .metric-amber .metric-value {
-        background: linear-gradient(135deg, #fde68a, #f59e0b);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    .metric-amber .metric-value { background: linear-gradient(135deg, #fde68a, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .metric-amber { border-color: rgba(245, 158, 11, 0.2); }
-
-    .metric-cyan .metric-value {
-        background: linear-gradient(135deg, #a5f3fc, #06b6d4);
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-
-    /* === BLOCK / ALLOW BANNERS === */
-    .block-banner {
-        background: linear-gradient(135deg, #7f1d1d, #991b1b, #7f1d1d);
-        border: 1px solid rgba(239, 68, 68, 0.4);
-        border-radius: 16px; padding: 28px;
-        text-align: center; position: relative; overflow: hidden;
-    }
-    .block-banner::before {
-        content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.2) 0%, transparent 70%);
-        animation: pulse-glow 2s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-        0%, 100% { opacity: 0.5; }
-        50% { opacity: 1; }
-    }
+    .metric-cyan .metric-value { background: linear-gradient(135deg, #a5f3fc, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .block-banner { background: linear-gradient(135deg, #7f1d1d, #991b1b, #7f1d1d); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 16px; padding: 28px; text-align: center; position: relative; overflow: hidden; }
+    .block-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 50% 50%, rgba(239, 68, 68, 0.2) 0%, transparent 70%); animation: pulse-glow 2s ease-in-out infinite; }
+    @keyframes pulse-glow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
     .block-title { color: #fca5a5; font-size: 36px; font-weight: 900; margin: 0; position: relative; z-index: 1; }
     .block-subtitle { color: #fecaca; font-size: 14px; margin: 8px 0 0; position: relative; z-index: 1; }
-
-    .allow-banner {
-        background: linear-gradient(135deg, #14532d, #166534, #14532d);
-        border: 1px solid rgba(34, 197, 94, 0.4);
-        border-radius: 16px; padding: 28px; text-align: center;
-    }
+    .allow-banner { background: linear-gradient(135deg, #14532d, #166534, #14532d); border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 28px; text-align: center; }
     .allow-title { color: #86efac; font-size: 36px; font-weight: 900; margin: 0; }
-
-    /* === LAYER CARDS === */
-    .layer-active {
-        background: linear-gradient(135deg, rgba(127, 29, 29, 0.3), rgba(153, 27, 27, 0.15));
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        border-radius: 12px; padding: 16px; margin: 6px 0;
-        transition: all 0.3s ease;
-    }
+    .layer-active { background: linear-gradient(135deg, rgba(127, 29, 29, 0.3), rgba(153, 27, 27, 0.15)); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 16px; margin: 6px 0; transition: all 0.3s ease; }
     .layer-active:hover { border-color: rgba(239, 68, 68, 0.5); }
-    .layer-safe {
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid rgba(34, 197, 94, 0.15);
-        border-radius: 12px; padding: 16px; margin: 6px 0;
-    }
+    .layer-safe { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(34, 197, 94, 0.15); border-radius: 12px; padding: 16px; margin: 6px 0; }
     .layer-name { color: #e2e8f0; font-weight: 600; font-size: 14px; }
     .layer-score-red { color: #ef4444; font-weight: 800; font-size: 18px; }
     .layer-score-green { color: #22c55e; font-weight: 800; font-size: 18px; }
-
-    /* === SAR BOX === */
-    .sar-box {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.3));
-        border: 1px solid rgba(239, 68, 68, 0.2);
-        border-left: 4px solid #ef4444;
-        border-radius: 12px; padding: 24px; margin: 12px 0;
-    }
+    .sar-box { background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.3)); border: 1px solid rgba(239, 68, 68, 0.2); border-left: 4px solid #ef4444; border-radius: 12px; padding: 24px; margin: 12px 0; }
     .sar-meta { color: #64748b; font-size: 12px; font-family: 'JetBrains Mono', monospace; }
     .sar-text { color: #e2e8f0; font-size: 15px; line-height: 1.8; margin-top: 12px; }
-
-    /* === COMMUNITY CARD === */
-    .community-card {
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(99, 102, 241, 0.15);
-        border-radius: 14px; padding: 20px; margin: 8px 0;
-    }
-    .community-critical { border-left: 4px solid #ef4444; }
-    .community-high { border-left: 4px solid #f59e0b; }
-    .community-moderate { border-left: 4px solid #22c55e; }
-
-    /* === INTEL BOX === */
-    .intel-box {
-        background: rgba(6, 8, 13, 0.9);
-        border: 1px solid rgba(99, 102, 241, 0.2);
-        border-radius: 12px; padding: 20px;
-        font-family: 'JetBrains Mono', monospace; font-size: 13px;
-        color: #a5b4fc;
-    }
-
-    /* === SIDEBAR === */
-    [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
-        border-right: 1px solid rgba(99, 102, 241, 0.1);
-    }
-    [data-testid="stSidebar"] .block-container { padding-top: 2rem; }
-
-    /* === TABLE STYLING === */
-    .stDataFrame { border-radius: 12px; overflow: hidden; }
-
-    /* === DAMAGE BANNER === */
-    .damage-banner {
-        border-radius: 16px; padding: 28px;
-        text-align: center; position: relative;
-    }
-    .damage-catastrophic {
-        background: linear-gradient(135deg, #7f1d1d, #991b1b);
-        border: 1px solid rgba(239, 68, 68, 0.5);
-    }
-    .damage-severe {
-        background: linear-gradient(135deg, #78350f, #92400e);
-        border: 1px solid rgba(245, 158, 11, 0.5);
-    }
-    .damage-moderate {
-        background: linear-gradient(135deg, #1e3a5f, #1e40af);
-        border: 1px solid rgba(59, 130, 246, 0.5);
-    }
-
-    /* === ATTACK FEED === */
-    .attack-stat {
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(99, 102, 241, 0.15);
-        border-radius: 12px; padding: 16px; text-align: center;
-    }
-    .saved-banner {
-        background: linear-gradient(135deg, #14532d, #166534);
-        border: 1px solid rgba(34, 197, 94, 0.4);
-        border-radius: 16px; padding: 24px; text-align: center; margin-top: 20px;
-    }
-
-    /* === SECTION HEADERS === */
-    .section-header {
-        color: #e2e8f0; font-size: 20px; font-weight: 700;
-        margin: 24px 0 12px 0; padding-bottom: 8px;
-        border-bottom: 1px solid rgba(99, 102, 241, 0.15);
-    }
-
-    /* === CHANNEL/JURISDICTION CHIPS === */
-    .chip {
-        display: inline-block; padding: 6px 14px;
-        border-radius: 20px; font-size: 13px;
-        font-weight: 600; margin: 3px;
-    }
-    .chip-channel {
-        background: rgba(99, 102, 241, 0.1);
-        border: 1px solid rgba(99, 102, 241, 0.3);
-        color: #a5b4fc;
-    }
-    .chip-risk-high {
-        background: rgba(239, 68, 68, 0.1);
-        border: 1px solid rgba(239, 68, 68, 0.3);
-        color: #fca5a5;
-    }
-    .chip-risk-med {
-        background: rgba(245, 158, 11, 0.1);
-        border: 1px solid rgba(245, 158, 11, 0.3);
-        color: #fde68a;
-    }
-    .chip-risk-low {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.3);
-        color: #86efac;
-    }
-
-    /* === STREAMLIT OVERRIDES === */
+    .intel-box { background: rgba(6, 8, 13, 0.9); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 12px; padding: 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #a5b4fc; }
+    [data-testid="stSidebar"] { background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%); border-right: 1px solid rgba(99, 102, 241, 0.1); }
+    .damage-banner { border-radius: 16px; padding: 28px; text-align: center; position: relative; }
+    .damage-catastrophic { background: linear-gradient(135deg, #7f1d1d, #991b1b); border: 1px solid rgba(239, 68, 68, 0.5); }
+    .damage-severe { background: linear-gradient(135deg, #78350f, #92400e); border: 1px solid rgba(245, 158, 11, 0.5); }
+    .damage-moderate { background: linear-gradient(135deg, #1e3a5f, #1e40af); border: 1px solid rgba(59, 130, 246, 0.5); }
+    .attack-stat { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(99, 102, 241, 0.15); border-radius: 12px; padding: 16px; text-align: center; }
+    .saved-banner { background: linear-gradient(135deg, #14532d, #166534); border: 1px solid rgba(34, 197, 94, 0.4); border-radius: 16px; padding: 24px; text-align: center; margin-top: 20px; }
+    .section-header { color: #e2e8f0; font-size: 20px; font-weight: 700; margin: 24px 0 12px 0; padding-bottom: 8px; border-bottom: 1px solid rgba(99, 102, 241, 0.15); }
+    .chip { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin: 3px; }
+    .chip-channel { background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.3); color: #a5b4fc; }
+    .chip-risk-high { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+    .chip-risk-med { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fde68a; }
+    .chip-risk-low { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); color: #86efac; }
     .stSelectbox > div > div { background: rgba(15, 23, 42, 0.8); border-color: rgba(99, 102, 241, 0.2); }
     .stTextInput > div > div > input { background: rgba(15, 23, 42, 0.8); border-color: rgba(99, 102, 241, 0.2); color: #e2e8f0; }
     .stNumberInput > div > div > input { background: rgba(15, 23, 42, 0.8); border-color: rgba(99, 102, 241, 0.2); color: #e2e8f0; }
-    .stButton > button {
-        background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        color: white; border: none; border-radius: 12px;
-        padding: 12px 24px; font-weight: 700; font-size: 15px;
-        transition: all 0.3s ease;
-    }
-    .stButton > button:hover {
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
-        transform: translateY(-2px);
-    }
-    div[data-testid="stExpander"] {
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid rgba(99, 102, 241, 0.1);
-        border-radius: 12px;
-    }
+    .stButton > button { background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; border: none; border-radius: 12px; padding: 12px 24px; font-weight: 700; font-size: 15px; transition: all 0.3s ease; }
+    .stButton > button:hover { background: linear-gradient(135deg, #6366f1, #8b5cf6); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4); transform: translateY(-2px); }
+    div[data-testid="stExpander"] { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(99, 102, 241, 0.1); border-radius: 12px; }
     .stProgress > div > div > div { background: linear-gradient(90deg, #4f46e5, #7c3aed, #a855f7); }
 </style>
 """, unsafe_allow_html=True)
@@ -342,7 +120,6 @@ with st.sidebar:
 
     try:
         stats = requests.get(f"{API_URL}/stats", timeout=3).json()
-        config = stats.get("model_config", {})
         st.markdown(f"""
         <div class="glass-card" style="padding:16px;">
             <div style="color:#a5b4fc; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px;">SYSTEM STATUS</div>
@@ -444,23 +221,19 @@ if page == "🏠 Command Center":
                 </div>""", unsafe_allow_html=True)
 
         with col2:
-            st.markdown('<div class="section-header">��� Channels</div>', unsafe_allow_html=True)
+            st.markdown('<div class="section-header">📡 Channels</div>', unsafe_allow_html=True)
             channels_info = [("📱", "Mobile App"), ("🌐", "Web Banking"), ("🏧", "ATM Network"),
-                            ("💳", "UPI Instant"), ("🏦", "Wire Transfer"), ("🏢", "Branch")]
+                            ("��", "UPI Instant"), ("🏦", "Wire Transfer"), ("🏢", "Branch")]
             for emoji, name in channels_info:
                 st.markdown(f'<span class="chip chip-channel">{emoji} {name}</span>', unsafe_allow_html=True)
 
             st.markdown('<div class="section-header" style="margin-top:24px;">🗺️ Jurisdictions</div>', unsafe_allow_html=True)
-            jur_data = [
-                ("US", "low"), ("UK", "low"), ("IN", "low"), ("SG", "low"),
-                ("AE", "med"), ("NGA", "med"),
-                ("KY", "high"), ("PA", "high"), ("VG", "high"), ("RU", "high"),
-            ]
+            jur_data = [("US", "low"), ("UK", "low"), ("IN", "low"), ("SG", "low"),
+                        ("AE", "med"), ("NGA", "med"),
+                        ("KY", "high"), ("PA", "high"), ("VG", "high"), ("RU", "high")]
             for code, risk in jur_data:
-                cls = f"chip-risk-{risk}"
-                st.markdown(f'<span class="chip {cls}">{code}</span>', unsafe_allow_html=True)
+                st.markdown(f'<span class="chip chip-risk-{risk}">{code}</span>', unsafe_allow_html=True)
 
-        # Live Feed
         st.markdown('<div class="section-header">📡 Live Transaction Feed</div>', unsafe_allow_html=True)
         try:
             feed = requests.get(f"{API_URL}/feed", timeout=3).json()
@@ -563,7 +336,6 @@ elif page == "🔍 Transaction Scanner":
                             <div class="metric-value">{value}</div>
                         </div>""", unsafe_allow_html=True)
 
-                # Risk Breakdown
                 breakdown = res.get('risk_breakdown', {})
                 if breakdown:
                     st.markdown('<div class="section-header">📊 Risk Breakdown by Layer</div>', unsafe_allow_html=True)
@@ -678,7 +450,6 @@ elif page == "⚔️ Attack Simulator":
                             "Route": f"{step['s_country']}→{step['r_country']}"})
 
                     progress.progress((i + 1) / total_steps)
-
                     block_rate = blocked_count / max(i + 1, 1) * 100
                     stats_area.markdown(f"""
                     <div style="display:flex; gap:12px;">
@@ -688,7 +459,6 @@ elif page == "⚔️ Attack Simulator":
                         <div class="attack-stat" style="flex:1;"><div class="metric-label">BLOCK RATE</div><div style="color:#a5b4fc; font-size:28px; font-weight:800;">{block_rate:.1f}%</div></div>
                     </div>
                     """, unsafe_allow_html=True)
-
                     time.sleep(0.05)
 
                 results_df = pd.DataFrame(results)
@@ -844,7 +614,6 @@ elif page == "🔮 Ring Discovery":
 
                     for i, comm in enumerate(communities):
                         sus = comm['suspicion_score']
-                        cls = "community-critical" if sus > 50 else "community-high" if sus > 30 else "community-moderate"
                         threat = "🔴 CRITICAL" if sus > 50 else "🟡 HIGH" if sus > 30 else "🟢 MODERATE"
 
                         with st.expander(f"{threat} Community #{comm['community_id']} — {comm['size']} members | Score: {sus}", expanded=(i < 3)):
@@ -862,7 +631,6 @@ elif page == "🔮 Ring Discovery":
                                 comm_txns = df[(df['sender_id'].isin(members)) & (df['receiver_id'].isin(members))]
                                 if len(comm_txns) > 0:
                                     mule_ids = set(pd.read_csv("data/users.csv").query("is_mule == 1")['user_id'])
-                                    c_nodes = [Node(id=m, label=m, size=300, color="#ef4444" if m in mule_ids else "#6366f1") for m in members if m not in set()]
                                     c_added = set()
                                     c_nodes_final = []
                                     for m in members:
@@ -968,20 +736,17 @@ elif page == "📊 Analytics":
         with col2:
             st.markdown("**Total Volume ($)**")
             st.bar_chart(df.groupby('channel')['amount'].sum())
-
         st.dataframe(df.groupby('channel').agg(count=('amount', 'count'), total=('amount', 'sum'), avg=('amount', 'mean'), max_amt=('amount', 'max')).round(2), use_container_width=True)
 
     if 'sender_country' in df.columns and 'receiver_country' in df.columns:
         st.markdown('<div class="section-header">🌍 Cross-Border Analysis</div>', unsafe_allow_html=True)
         cross = df[df['sender_country'] != df['receiver_country']]
         domestic = df[df['sender_country'] == df['receiver_country']]
-
         c1, c2, c3, c4 = st.columns(4)
         with c1: st.markdown(f"""<div class="metric-card"><div class="metric-label">CROSS-BORDER</div><div class="metric-value">{len(cross):,}</div></div>""", unsafe_allow_html=True)
         with c2: st.markdown(f"""<div class="metric-card"><div class="metric-label">DOMESTIC</div><div class="metric-value">{len(domestic):,}</div></div>""", unsafe_allow_html=True)
         with c3: st.markdown(f"""<div class="metric-card metric-amber"><div class="metric-label">CROSS-BORDER %</div><div class="metric-value">{len(cross)/max(len(df),1)*100:.1f}%</div></div>""", unsafe_allow_html=True)
         with c4: st.markdown(f"""<div class="metric-card metric-red"><div class="metric-label">CB VOLUME</div><div class="metric-value">${cross['amount'].sum():,.0f}</div></div>""", unsafe_allow_html=True)
-
         if len(cross) > 0:
             st.markdown("#### Top 10 Corridors")
             corridors = cross.groupby(['sender_country', 'receiver_country']).agg(count=('amount', 'count'), volume=('amount', 'sum')).sort_values('volume', ascending=False).head(10).round(2)
@@ -1083,7 +848,6 @@ elif page == "🔒 Intel Sharing":
                 </div>""", unsafe_allow_html=True)
 
             st.markdown('<div class="section-header">📦 Raw API Response (JSON)</div>', unsafe_allow_html=True)
-            st.markdown(f'<div style="color:#64748b; font-size:12px; margin-bottom:8px;">This JSON would be sent to partner banks via encrypted API channel:</div>', unsafe_allow_html=True)
             st.json(intel)
 
         except Exception as e:

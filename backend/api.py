@@ -263,14 +263,13 @@ def load_gnn_brain():
     print(f"✅ TraceNet is READY!")
     print(f"   Nodes: {len(all_nodes)} | Sanctioned: {len(sanctioned_set)} | Shells: {len(shell_set)}")
 
-    # Debug: print some GNN scores to verify
     sample_mules = list(mule_set_global)[:5]
     sample_normal = [n for n in all_nodes if n not in mule_set_global][:5]
     print(f"   Sample MULE GNN scores: {[(m, round(node_risk_scores.get(m, 0), 1)) for m in sample_mules]}")
     print(f"   Sample NORMAL GNN scores: {[(n, round(node_risk_scores.get(n, 0), 1)) for n in sample_normal]}")
 
 # ============================================================
-# 7. DETECTION ENGINES (ALL SCORES REDUCED FOR BALANCE)
+# 7. DETECTION ENGINES
 # ============================================================
 
 def detect_chain_risk(sender_id, receiver_id):
@@ -518,16 +517,8 @@ def generate_privacy_safe_intel(user_id):
 # ============================================================
 
 def calculate_live_risk(user_id, amount, channel, sender_country, receiver_country):
-    """
-    WEIGHTED RISK ENGINE:
-    - GNN is PRIMARY signal (40% weight)
-    - Behavioral boosters are SECONDARY (capped at 35% total)
-    - This creates realistic spread: criminals ~55-75%, normals ~5-15%
-    """
-    # PRIMARY: GNN Score (0-100)
     gnn_risk = node_risk_scores.get(user_id, 0.0)
 
-    # SECONDARY: Behavioral boosters (each small, capped total)
     behavior_risk = 0.0
     if user_id in live_graph:
         in_deg = live_graph.in_degree(user_id)
@@ -549,7 +540,6 @@ def calculate_live_risk(user_id, amount, channel, sender_country, receiver_count
         if successors.intersection(predecessors):
             behavior_risk += 5.0
 
-    # Structuring
     if 8500 <= amount <= 9999:
         behavior_risk += 8.0
     elif amount > 9999:
@@ -563,11 +553,9 @@ def calculate_live_risk(user_id, amount, channel, sender_country, receiver_count
     ownership_risk, linked = detect_ownership_links(user_id)
     nesting_risk, shell_layers, nesting_path = detect_nesting(user_id, user_id)
 
-    # WEIGHTED COMBINATION
     booster_total = behavior_risk + vel_risk + chan_risk + jur_risk + sanc_risk + frag_risk + ownership_risk + nesting_risk
     booster_capped = min(booster_total, 35.0)
 
-    # Final: 40% GNN + boosters (max 35) = max possible ~75%
     final_risk = (gnn_risk * 0.4) + booster_capped
 
     breakdown = {
@@ -606,7 +594,6 @@ def score_txn(txn: Transaction):
     sender_max = get_max_transfer(txn.sender_id)
     sender_label = TRUST_TIERS[sender_tier]["label"]
 
-    # TRUST GATE: Only for Tier 0 brand new accounts
     if sender_tier == 0 and txn.amount > sender_max:
         result = {
             "txn_id": txn.txn_id, "risk_score": 95.0, "confidence": 0.95,
@@ -631,7 +618,6 @@ def score_txn(txn: Transaction):
         all_txn_log.append(result)
         return result
 
-    # ===== FULL AI ENGINE =====
     live_graph.add_edge(txn.sender_id, txn.receiver_id)
 
     new_row = pd.DataFrame([{
@@ -650,7 +636,6 @@ def score_txn(txn: Transaction):
     routing_risk, hop_count = detect_routing_complexity(txn.sender_id, txn.receiver_id)
     nesting_risk_txn, shell_count, nest_path = detect_nesting(txn.sender_id, txn.receiver_id)
 
-    # Take higher risk + small boost
     base_risk = max(s_risk, r_risk)
     boost = min(chain_risk + routing_risk + (nesting_risk_txn * 0.3), 15.0)
     max_risk = min(base_risk + boost, 99.9)
@@ -663,7 +648,6 @@ def score_txn(txn: Transaction):
     active_layers = sum(1 for v in breakdown.values() if v > 0)
     confidence = round(min(active_layers / max(len(breakdown), 1), 0.99), 2)
 
-    # BLOCK THRESHOLD: 50%
     is_fraud = 1 if max_risk > 50.0 else 0
     triggered = [k for k, v in breakdown.items() if v > 0]
 
@@ -750,7 +734,8 @@ def get_feed():
 @app.get("/communities")
 def get_communities():
     try:
-        return {"total_communities_found": len(discover_mule_communities()), "suspicious_communities": discover_mule_communities()[:20]}
+        comms = discover_mule_communities()
+        return {"total_communities_found": len(comms), "suspicious_communities": comms[:20]}
     except ImportError:
         return {"error": "pip install python-louvain"}
     except Exception as e:
