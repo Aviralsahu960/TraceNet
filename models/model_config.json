@@ -1,0 +1,32 @@
+{
+  "num_features": 15,
+  "hidden_1": 64,
+  "hidden_2": 32,
+  "node_count": 4991,
+  "edge_count": 16046,
+  "mule_count": 92,
+  "accuracy": 99.96,
+  "precision": 97.87,
+  "recall": 100.0,
+  "f1": 98.92,
+  "channels": [
+    "web",
+    "atm",
+    "mobile_app",
+    "wire",
+    "upi",
+    "branch"
+  ],
+  "jurisdictions": [
+    "UK",
+    "SG",
+    "NGA",
+    "US",
+    "VG",
+    "AE",
+    "KY",
+    "IN",
+    "RU",
+    "PA"
+  ]
+}
