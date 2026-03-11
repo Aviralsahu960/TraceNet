@@ -202,11 +202,17 @@ TraceNet/
 
 ---
 
-## ✉️ Author
+## ✉️ Authors
 
-- **GitHub:** [Aviral Sahu](https://github.com/Aviralsahu960)  
-- **Email for Queries:** aviralsahu960@gmail.com
-- **LinkedIn:** https://www.linkedin.com/in/aviral-sahu-vyntaxdev/
+- **Aviral Sahu**
+   GitHub: [Aviralsahu960](https://github.com/Aviralsahu960)
+   Email: aviralsahu960@gmail.com
+   LinkedIn: https://www.linkedin.com/in/aviral-sahu-vyntaxdev/
+
+- **K Kushal Varma**
+   GitHub: [Kushal-Varma-K](https://github.com/Kushal-Varma-K)
+   Email: kushalvarma.konduru@gmail.com
+   LinkedIn: https://www.linkedin.com/in/k-kushal-varma-bb09472b4/
 ---
 
 <div align="center">
