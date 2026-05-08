@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ TraceNet
+#  TraceNet
 
 ### Real-Time Cross-Channel Money Mule Detection Platform
 
@@ -11,13 +11,13 @@
 
 TraceNet is a cutting-edge Anti-Money Laundering (AML) platform that leverages **Graph Neural Networks**, an **11-Layer Detection Engine**, and **locally hosted LLM-powered SAR Reports** to monitor, intercept, and prevent cross-channel money laundering activities in real time.
 
-[✨ Features](#-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start-guide) • [Results](#-results)
+[ Features](#-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start-guide) • [Results](#-results)
 
 ---
 
 </div>
 
-## 🚨 Problem Statement
+##  Problem Statement
 
 Criminal rings exploit weaknesses in silo-based banking systems, laundering $2 trillion annually. They split transactions across Mobile Apps, ATMs, UPI, and Wire Transfers while routing funds through layers of shell companies in high-risk jurisdictions. 
 Traditional systems fail due to **blind spots between channels** and manual, inefficient detection methods.
@@ -26,36 +26,36 @@ TraceNet solves this by constructing a unified **transaction graph** across dive
 
 ---
 
-## ✨ Features
+##  Features
 
 ### Key Capabilities
-1. **🧠 GNN-augmented Risk Scoring**:
+1. ** GNN-augmented Risk Scoring**:
    - **11-Layer Detection Engine**, combining:
      - GraphSAGE-based GNN inference
      - Behavioral analysis (fan-in/out, velocity, circular flows, jurisdictions).
    - Weighted risk assessment combining 40% GNN scores and 35% additional behavioral signals.
    
-2. **📜 SAR (Suspicious Activity Reports)**
+2. ** SAR (Suspicious Activity Reports)**
    - LLM (Qwen 2.5 via Ollama) generates actionable regulator-ready reports that include flagged entities, risk breakdowns, and narrative analysis.
    
-3. **⚔️ Realistic Attack Simulator**
+3. ** Realistic Attack Simulator**
    - Replay real-world laundering rings (Scatter-Gather, Shell Nesting, Money Fragmentation, Velocity, Circular flows).
 
-4. **🕵️ Graph Forensics Analysis**:
+4. ** Graph Forensics Analysis**:
    - Interactive network visualization showing channels, accounts, and fraud traces.
 
-5. **🔮 Mule Ring Discovery**:
+5. ** Mule Ring Discovery**:
    - Louvain-based analysis discovers criminal subgraphs for proactive action.
 
-6. **💀 Damage Report**:
+6. ** Damage Report**:
    - **What-If Estimator** calculates the financial and operational damage if suspicious transactions hadn't been blocked.
 
-7. **🔒 Privacy-Safe Interbank Intelligence Sharing**:
+7. ** Privacy-Safe Interbank Intelligence Sharing**:
    - Data anonymization (SHA-256 hashes, no PII leaks) for safe compliance and collaborative detection.
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
@@ -76,7 +76,7 @@ TraceNet solves this by constructing a unified **transaction graph** across dive
 
 ---
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### Prerequisites
 - **Python 3.10+**
@@ -146,7 +146,7 @@ TraceNet solves this by constructing a unified **transaction graph** across dive
 
 ---
 
-## 📊 Results
+##  Results
 
 - **Performance Metrics**:
   ```
@@ -173,7 +173,7 @@ TraceNet solves this by constructing a unified **transaction graph** across dive
 
 ---
 
-## 🔍 Key Features to Test
+##  Key Features to Test
 
 1. **Transaction Scanner**: Use preloaded scenarios like "Known Criminal" or "Coffee Purchase" and analyze real-time results.
 2. **Attack Simulations**: Launch and monitor real laundering scenarios (e.g., Scatter-Gather).
@@ -182,7 +182,7 @@ TraceNet solves this by constructing a unified **transaction graph** across dive
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 TraceNet/
@@ -202,7 +202,7 @@ TraceNet/
 
 ---
 
-## ✉️ Author
+##  Author
 
 - **Aviral Sahu**
    GitHub: [Aviralsahu960](https://github.com/Aviralsahu960)
