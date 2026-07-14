@@ -7,5 +7,6 @@ fastapi
 uvicorn
 streamlit
 streamlit-agraph
-google-generativeai
+ollama
+requests
 python-dotenv
